@@ -1,15 +1,37 @@
-<form>
+<form #taskForm="ngForm">
+    
     <div class="input-group mb-3">
         <input type = "text"
             name="inputTodo"
             placeholder="Enter todo..."
             class="form-control"
             [(ngModel)]="inputTodo"
+            #taskName = "ngModel"
+            required
         />
-        <input type="submit"
+
+        <input *ngIf="taskName.value.length >3" 
+            type="submit"
             value="Add Todo"
             class="btn btn-primary"
             (click)="addTodo()"
             />
+
+        <input *ngIf="taskName.value.length <4" 
+            type="submit"
+            value="Add Todo"
+            class="btn btn-primary"
+            (click)="addTodo()"
+            disabled
+        />
+
     </div>
+
+    <div class="input-group mb-3">
+        <span [hidden] ="taskName.valid || taskName.pristine">
+            <p class="invalid">This input can not be empty</p> 
+        </span>
+    </div>
+
+    
 </form>
