@@ -37,15 +37,8 @@ export class TodoListComponent implements OnInit {
     this.todos = this.todos.filter((v,i) => i !== id);
   }
 
-  updateTodo (id:number){
-    this.todos = this.todos.filter((v,i) => i == id);
-  }
-
   addTodo(todo: Todo){
     this.todos.push(todo);
     this.logTodo.push(todo.content);
   }
-
-  
-
 }

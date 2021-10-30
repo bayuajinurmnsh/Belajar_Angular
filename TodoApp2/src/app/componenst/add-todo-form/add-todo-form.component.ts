@@ -13,8 +13,6 @@ export class AddTodoFormComponent {
 
   inputTodo:string ="";
 
-  valid: any[] = [];
-
   addTodo(){
     const todo: Todo={
       content:this.inputTodo,

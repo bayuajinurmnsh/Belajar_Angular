@@ -1,4 +1,4 @@
-<form #taskForm="ngForm">
+<form>
     
     <div class="input-group mb-3">
         <input type = "text"
@@ -10,26 +10,32 @@
             required
         />
 
-        <input *ngIf="taskName.value.length >3" 
+        <input *ngIf="taskName?.value?.length >3; else disabledbtn" 
             type="submit"
             value="Add Todo"
             class="btn btn-primary"
-            (click)="addTodo()"
-            />
+            (click)="addTodo()"/>
 
-        <input *ngIf="taskName.value.length <4" 
-            type="submit"
-            value="Add Todo"
-            class="btn btn-primary"
-            (click)="addTodo()"
-            disabled
-        />
+            <ng-template #disabledbtn>
+                <input
+                type="submit"
+                value="Add Todo"
+                class="btn btn-primary"
+                disabled/>
+            </ng-template>
+        
 
     </div>
 
     <div class="input-group mb-3">
         <span [hidden] ="taskName.valid || taskName.pristine">
-            <p class="invalid">This input can not be empty</p> 
+            <p>This input can not be empty <br> and minimum length is 4 character</p> 
+        </span>
+    </div>
+
+    <div class="input-group mb-3">
+        <span>
+            <p class> You have type {{taskName?.value?.length}} character(s)</p> 
         </span>
     </div>
 
